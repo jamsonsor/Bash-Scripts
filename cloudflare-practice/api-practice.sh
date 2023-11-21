@@ -39,7 +39,7 @@ curl --request POST \
     {
       "constraint": {
         "operator": "matches",
-        "value": "*devopsjam.com/contact/*"
+        "value": "*devopsjam.com/help/*"
       },
       "target": "url"
     }
