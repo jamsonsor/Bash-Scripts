@@ -85,4 +85,4 @@ curl --request GET \
   --url https://api.cloudflare.com/client/v4/zones/$CF_ZONEID/pagerules \
   --header 'Content-Type: application/json' \
   --header "X-Auth-Email: $CF_EMAIL" \
-  --header "X-Auth-Key: $CF_GKEY" | jq .result[].targets.value
+  --header "X-Auth-Key: $CF_GKEY" | jq '.result[].targets[].constraint.value'
