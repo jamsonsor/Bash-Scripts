@@ -21,6 +21,8 @@ curl --request GET \
   --header "X-Auth-Email: $CF_EMAIL" \
   --header "X-Auth-Key: $CF_GKEY" | jq .
 
+
+echo "Adding page rules..."
 curl --request POST \
   --url https://api.cloudflare.com/client/v4/zones/$CF_ZONEID/pagerules \
   --header 'Content-Type: application/json' \
@@ -71,8 +73,16 @@ curl --request POST \
   ]
 }' | jq .
 
+echo "Deleting page rules..."
 curl --request DELETE \
   --url https://api.cloudflare.com/client/v4/zones/$CF_ZONEID/pagerules/f55cab1c756e9efe5af4e5d0356d19dc \
   --header 'Content-Type: application/json' \
   --header "X-Auth-Email: $CF_EMAIL" \
   --header "X-Auth-Key: $CF_GKEY" | jq .
+
+echo "Listing page rules..."
+curl --request GET \
+  --url https://api.cloudflare.com/client/v4/zones/$CF_ZONEID/pagerules \
+  --header 'Content-Type: application/json' \
+  --header "X-Auth-Email: $CF_EMAIL" \
+  --header "X-Auth-Key: $CF_GKEY" | jq .result[].targets.value
